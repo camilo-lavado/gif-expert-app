@@ -1,36 +1,39 @@
-import { useState } from 'react'
-import { AddCategory } from './components/AddCategory';
+import { useState } from 'react';
+import { AddCategory, GifGrid } from './components';
 
 export const GifExpertApp = () => {
     
-/*usestate snippet*/
-    //const [first, setfirst] = useState(second)
-    const [categories, setCategories] = useState([ 'Saint Seiya', 'Hunter X Hunter', 'Full Metal Alchemist' ])
+    const [ categories, setCategories ] = useState([ 'One Punch' ]);
+    
 
-    /*Para añadir nuevas categorias usamos el spread operator para copiar el arreglo existente y luego insertamos lo nuevo */
-    const onAddCategory = () => {
-        setCategories( ['Ranma 1/2',...categories] );
-        
+    //Esta funcion se pasa como prop al componente AddCategory
+    const onAddCategory = ( newCategory ) => {//sirve para agregar una nueva categoria
+        if ( categories.includes(newCategory) ) return;//valida que no se repita la categoria
+        setCategories([ newCategory, ...categories ]);
     }
+    
 
-    /*Otra forma es con un callback*/
-    // const onAddCategory = () => {
-    //     setCategories( cats => [...cats, 'Ranma 1/2'] );
+    return (
+        <>
 
-  return (
-    <>
-    {/*Titulo de la app*/}
-    <h1>GifExpertApp</h1>
-    <hr />
-    {/*Input para buscar gifs*/}
-    <AddCategory setCategories={ setCategories} />
-        
-        {/*Listado de gif*/}
-        <ol>
-            {categories.map( category => {
-                return <li key={category}>{category}</li>
-            },)}
-        </ol>
-    </>
-  )
+            <h1>GifExpertApp</h1>
+
+    
+            <AddCategory 
+                onNewCategory={ (value) => onAddCategory(value) }
+            />
+
+            { 
+                categories.map( ( category ) => (
+                    <GifGrid 
+                        key={ category } 
+                        category={ category } />
+                ))
+            }
+
+
+
+
+        </>
+    )
 }
