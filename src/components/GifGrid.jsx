@@ -15,6 +15,9 @@ export const GifGrid = ({ category }) => {
 
             <div className="card-grid">
                 {
+                    //Quiero agregar un contador para las imagenes
+                    
+
                     images.map( ( image ) => (
                         <GifItem 
                             key={ image.id } 
