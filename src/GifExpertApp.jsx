@@ -3,7 +3,7 @@ import { AddCategory, GifGrid } from './components';
 
 export const GifExpertApp = () => {
     
-    const [ categories, setCategories ] = useState([ 'All' ]);
+    const [ categories, setCategories ] = useState([ 'Bienvenido' ]);
     
 
     //Esta funcion se pasa como prop al componente AddCategory
@@ -16,7 +16,7 @@ export const GifExpertApp = () => {
     return (
         <>
 
-            <h1>GifExpertApp</h1>
+            <h1>Buscador de Gifs </h1>
 
     
             <AddCategory 
